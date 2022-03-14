@@ -6,8 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular';
-  username:string='';
-  password:string='';
-  confirmpassword:string='';
+  showSecret=false;
+  clicks:any=[]
+  logClicks(){
+    this.showSecret=!this.showSecret;
+this.clicks.push(new Date());
+  }
 }

@@ -1,26 +1,22 @@
 <div class="container">
-<div class="row">
-  <div class="col-xs-12">
-    <ol>
-      <li>Add a Input field which updates a property ('username') via Two-Way-Binding</li>
-      <li>Output the username property via String Interpolation (in a paragraph below the input)</li>
-      <li>Add a button which may only be clicked if the username is NOT an empty string</li>
-      <li>Upon clicking the button, the username should be reset to an empty string</li>
-    </ol>
-    <hr>
-    <label for="">Username</label>
-    <input type="text" class="form-control" [(ngModel)]="username"><br>
-    <label for="">Password</label>
-    <input type="password" class="form-control" [(ngModel)]="password"><br>
-    <label for="">Confirmpassword</label>
-    <input type="password" class="form-control" [(ngModel)]="confirmpassword"><br>
-    User Name {{username}}<br>
-    Password {{password}}<br>
-    Confirm Password {{confirmpassword}}<br>
-    <button class="btn btn-primary"
-     [disabled]="username==='' && password==='' && confirmpassword===''"
-     (click)="username=''; password=''; confirmpassword=''">Reset Form</button>
+    <div class="row">
+      <div class="col-xs-12">
+        <ol>
+          <li>Add A button which says 'Display Details</li>
+          <li>Add a paragraph with any content of your choice (e.g. 'Secret Password = tuna')</li>
+          <li>Toggle the displaying of that paragraph with the button created in the first step</li>
+          <li>Log all button clicks in an array and output that array below the secret paragraph (maybe log a timestamp or simply an incrementing number)</li>
+          <li>Starting at the 5th log item, give all future log items a blue background (via ngStyle) and white color (ngClass)</li>
+        </ol>
+       
+        <hr>
+   <button class="btn btn-primary" (click)="logClicks()" >Display Details</button>
+  <p *ngIf="showSecret">Secret Password = tuna</p>
+  <div *ngFor="let items of clicks; let i=index">
+     <p [ngStyle]="{backgroundColor: i>=4 ? 'blue' : 'yellow'}"
+     [ngClass]="{'white-text': i>=4,'blue-text':i<4 }"
+     >{{items}}</p>
+    </div>
+      </div>
+    </div>
   </div>
- 
-</div>
-</div>
