@@ -6,10 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  showSecret=false;
-  clicks:any=[]
-  logClicks(){
-    this.showSecret=!this.showSecret;
-this.clicks.push(new Date());
+ eventNumbers:number[]=[]
+ oddNumbers:number[]=[]
+  emitedNumbers(EmittedNumber:number){
+    if (EmittedNumber % 2 ==0){
+this.eventNumbers.push(EmittedNumber)
+    }else{
+      this.oddNumbers.push(EmittedNumber)
+    }
   }
 }
