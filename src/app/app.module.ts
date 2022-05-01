@@ -4,24 +4,26 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { GameControlComponent } from './game-control/game-control.component';
-import { OddComponent } from './odd/odd.component';
-import { EvenComponent } from './even/even.component';
+
+import { ActiveComponent } from './active/active.component';
+import { InActiveComponent } from './in-active/in-active.component';
+import { CounterService } from './counter.service';
 
 
 @NgModule({
   declarations: [
 AppComponent,
-GameControlComponent,
-OddComponent,
-EvenComponent
+
+
+ActiveComponent,
+InActiveComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CounterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

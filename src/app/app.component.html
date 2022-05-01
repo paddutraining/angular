@@ -1,40 +1,17 @@
 <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <ol>
-          <li>Create three new components: GameControl, Odd and Even</li>
-          <li>The GameControl Component should have buttons to start and stop the game</li>
-          <li>When starting the game, an event (holding a incrementing number) should get emitted each second (ref = setInterval())</li>
-          <li>The event should be listenable from outside the component</li>
-          <li>When stopping the game, no more events should get emitted (clearInterval(ref))</li>
-          <li>A new Odd component should get created for every odd number emitted, the same should happen for the Even Component (on even numbers)</li>
-          <li>Simply output Odd - NUMBER or Even - NUMBER in the two components</li>
-          <li>Style the element (e.g. paragraph) holding your output text differently in both components</li>
-        </ol>
-       
-        <hr>
-        <div class="container">
-          <h1>Game controling</h1>
-          <app-game-control (emitedNumbers)="emitedNumbers($event)"></app-game-control>
-          <hr>
-          
-          <div class="container">
-          <div class="row">
-              <div class="col-sm-6">
-                <p>Even numbers</p>
-                <app-even *ngFor="let eachNumber of eventNumbers">
-                  <p style="color:blue">{{eachNumber}}</p>
-                </app-even>
-              </div>
-              <div class="col-sm-6">
-                <p>odd numbers</p>
-                <app-odd *ngFor="let eachNumber of oddNumbers">
-                  <p style="color:red">{{eachNumber}}</p>
-                </app-odd>
-              </div>
-          </div>
-      </div></div>
-  
-      </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <h1>
+      Active to Deactive Count {{activeToInactive}}
+    </h1>  
+    <h1>
+      Deactive to Active Count {{inactiveToActive}}
+    </h1>
     </div>
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <app-active
+      ></app-active>
+      <app-in-active></app-in-active>
+    </div>
+  </div>
   </div>
