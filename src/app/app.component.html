@@ -1,17 +1,81 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-md-8 col-md-offset-2">
-    <h1>
-      Active to Deactive Count {{activeToInactive}}
-    </h1>  
-    <h1>
-      Deactive to Active Count {{inactiveToActive}}
-    </h1>
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!-- Add a Form with the following Inputs (and Validators)
+           1) Mail address (should not be empty and should be an email address)
+           2) A Dropdown which allows the user to select from three different Subscriptions ("Basic", "Advanced", "Pro")
+              Set "Advanced" as Default
+           3) A Password field (should not be empty)
+           field)
+           4) A Submit Button
+
+           Display a warning message if the Form is invalid AND was touched. Display a warning message below each input if it's invalid.
+
+           Upon submitting the form, you should simply print the Value of the Form to the Console.
+           Optionally, display it in your template.
+      -->
+
+<form #f="ngForm" (ngSubmit)="submitForm()">
+  <div class="form-group">
+  <label for="mail">Email Address</label>
+  <input class="form-control"    autocomplete="false" readonly onfocus="this.removeAttribute('readonly');"
+   type="email"
+    id="email"
+     name="email"
+     required
+     email
+     #email="ngModel"
+     ngModel>
+     <p *ngIf="email.invalid && email.touched" style="color:red"> Please enter valid email</p>
+  </div>
+  <div class="form-group">
+    <label for="mail">Choose Subscription</label>
+   <select class="form-control"
+   [ngModel]="defaultSubscription"
+   name="select" 
+   id="select"
+   >
+     <option *ngFor="let item of subscription"
+      [value]="item"
+     >{{item}}</option>
+   </select>
     </div>
-    <div class="col-xs-12 col-md-8 col-md-offset-2">
-      <app-active
-      ></app-active>
-      <app-in-active></app-in-active>
+    <div class="form-group">
+      <label for="mail">Select Password</label>
+      <input class="form-control"   autocomplete="false" readonly onfocus="this.removeAttribute('readonly');"
+       type="password"
+        id="password"
+         name="password"
+         required
+         #password="ngModel"
+         ngModel>
+         <p *ngIf="password.invalid && password.touched" style="color:red"> Please enter valid password</p>
+      </div>
+      <p *ngIf="f.invalid && f.touched">Please fill all fields....</p>
+      <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+      <!-- <form #signupform="ngForm" (ngsubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="email">Mail</label>
+          <input type="email" id="email" ngmodel="" name="email" required="" email="" class="form-control" #email="ngModel">
+          <span class="help-block" *ngif="!email.valid &amp;&amp; email.touched">Please enter a valid email!</span>
+        </div>
+        <div class="form-group">
+          <label for="subscription">Choose a Subscription</label>
+          <select name="subscription" id="subscription" [ngmodel]="selectedSubscription" class="form-control">
+            <option *ngfor="let subscription of subscriptions" [value]="subscription">{{ subscription }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" ngmodel="" required="" class="form-control" #password="ngModel">
+          <span class="help-block" *ngif="!password.valid &amp;&amp; password.touched">Please enter a valid password!</span>
+        </div>
+        <p *ngif="!signupForm.valid &amp;&amp; signupForm.touched">The form is invalid!</p>
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form> -->
     </div>
   </div>
-  </div>
+</div>

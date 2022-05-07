@@ -1,29 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AppComponent } from './app.component';
 
-import { ActiveComponent } from './active/active.component';
-import { InActiveComponent } from './in-active/in-active.component';
-import { CounterService } from './counter.service';
 
 
 @NgModule({
   declarations: [
-AppComponent,
-
-
-ActiveComponent,
-InActiveComponent
+AppComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     FormsModule
   ],
-  providers: [CounterService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
