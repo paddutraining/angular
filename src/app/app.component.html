@@ -1,61 +1,77 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <!-- Add a Form with the following Inputs (and Validators)
-           1) Mail address (should not be empty and should be an email address)
-           2) A Dropdown which allows the user to select from three different Subscriptions ("Basic", "Advanced", "Pro")
-              Set "Advanced" as Default
-           3) A Password field (should not be empty)
-           field)
-           4) A Submit Button
+      <!--
+          Create a Form with the following Controls and Validators
+          1) Project Name (should not be empty)
+          2) Mail (should not be a empty and a valid email)
+          3) Project Status Dropdown, with three values: 'Stable', 'Critical', 'Finished'
+          4) Submit Button
 
-           Display a warning message if the Form is invalid AND was touched. Display a warning message below each input if it's invalid.
+          Add your own Validator which doesn't allow "Test" as a Project Name
 
-           Upon submitting the form, you should simply print the Value of the Form to the Console.
-           Optionally, display it in your template.
+          Also implement that Validator as an async Validator (replace the other one)
+
+          Upon submitting the form, simply print the value to the console
       -->
-
-<form #f="ngForm" (ngSubmit)="submitForm()">
-  <div class="form-group">
-  <label for="mail">Email Address</label>
-  <input class="form-control"    autocomplete="false" readonly onfocus="this.removeAttribute('readonly');"
-   type="email"
-    id="email"
-     name="email"
-     required
-     email
-     #email="ngModel"
-     ngModel>
-     <p *ngIf="email.invalid && email.touched" style="color:red"> Please enter valid email</p>
-  </div>
-  <div class="form-group">
-    <label for="mail">Choose Subscription</label>
-   <select class="form-control"
-   [ngModel]="defaultSubscription"
-   name="select" 
-   id="select"
-   >
-     <option *ngFor="let item of subscription"
-      [value]="item"
-     >{{item}}</option>
-   </select>
-    </div>
-    <div class="form-group">
-      <label for="mail">Select Password</label>
-      <input class="form-control"   autocomplete="false" readonly onfocus="this.removeAttribute('readonly');"
-       type="password"
-        id="password"
-         name="password"
-         required
-         #password="ngModel"
-         ngModel>
-         <p *ngIf="password.invalid && password.touched" style="color:red"> Please enter valid password</p>
-      </div>
-      <p *ngIf="f.invalid && f.touched">Please fill all fields....</p>
-      <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
-
+      {{projectForm.value | json}}
+      <form  [formGroup]="projectForm" (ngSubmit)="submitForm()">
+        <div class="form-group">
+          <label for="projectName">project Name</label>
+          <input type="text"
+           class="form-control"
+           formControlName="projectName"
+           >
+        </div>
+        <div class="form-group">
+          <label for="Email">Please Enter Email</label>
+          <input type="email"
+           class="form-control"
+           formControlName="email"
+           >
+        </div>
+        <div class="form-group">
+          <label for="status">Please choose status</label>
+         <select name="status" id="status" class="form-control"
+         
+         formControlName="status">
+           <option [value]="item" *ngFor="let item of status">{{item}}</option>
+         </select>
+        </div>
+        <button class="btn btn-primary" type="submit">
+          submit
+        </button>
+      </form>
+      <!-- <form [formGroup]="projectForm" (ngSubmit)="onSaveProject()">
+        <div class="form-group">
+          <label for="name">Project Name</label>
+          <input
+            type="text"
+            id="name"
+            formControlName="projectName"
+            class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="email">Mail</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="status">Projectstatus</label>
+          <select
+            id="status"
+            formControlName="projectStatus"
+            class="form-control">
+            <option value="stable">Stable</option>
+            <option value="critical">Critical</option>
+            <option value="finished">Finished</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Create Project</button>
+      </form> -->
     </div>
   </div>
 </div>

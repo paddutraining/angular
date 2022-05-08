@@ -1,6 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CustomValidators } from './projectNameValidator';
+ import { AsyncValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +11,17 @@ import { NgForm } from '@angular/forms';
 
 })
 export class AppComponent {
-subscription=["Basic", "Advanced", "Pro"];
-defaultSubscription="Advanced";
-  @ViewChild('f', { static: false })
-  formData!: NgForm;
-submitForm(){
-  console.log(this.formData.value)
-}
+  status=['Stable', 'Critical', 'Finished']
+  projectForm=new FormGroup({
+    projectName:new FormControl(null,[
+      Validators.required,
+      CustomValidators.invalidProjectName],
+      <AsyncValidatorFn>CustomValidators.asyncInvalidProjectName),
+    email:new FormControl('',[Validators.required,Validators.email]),
+    status:new FormControl('Critical')
+
+  })
+  submitForm(){
+console.log(this.projectForm)
+  }
 }
