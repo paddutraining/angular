@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CustomValidators } from './projectNameValidator';
- import { AsyncValidatorFn } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-root',
@@ -11,17 +10,54 @@ import { CustomValidators } from './projectNameValidator';
 
 })
 export class AppComponent {
-  status=['Stable', 'Critical', 'Finished']
-  projectForm=new FormGroup({
-    projectName:new FormControl(null,[
-      Validators.required,
-      CustomValidators.invalidProjectName],
-      <AsyncValidatorFn>CustomValidators.asyncInvalidProjectName),
-    email:new FormControl('',[Validators.required,Validators.email]),
-    status:new FormControl('Critical')
+  servers:any = [
+    {
+      instanceType: 'medium',
+      name: 'Production',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    },
+    {
+      instanceType: 'large',
+      name: 'User Database',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    },
+    {
+      instanceType: 'small',
+      name: 'Development Server',
+      status: 'offline',
+      started: new Date(15, 1, 2017)
+    },
+    {
+      instanceType: 'small',
+      name: 'Testing Environment Server',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    }
+  ];
 
+  appStatus=new Promise((resolve,rejects)=>{
+    setTimeout(() => {
+      resolve('stable');
+    }, 2000);
   })
-  submitForm(){
-console.log(this.projectForm)
+  filteredStatus=''
+ 
+
+  getStatusClasses(server: {instanceType: string, name: string, status: string, started: Date}) {
+    return {
+      'list-group-item-success': server.status === 'stable',
+      'list-group-item-warning': server.status === 'offline',
+      'list-group-item-danger': server.status === 'critical'
+    };
   }
-}
+  onAddServer() {
+    this.servers.push({
+      instanceType: 'small',
+      name: 'New Server',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    });
+  }
+ }
